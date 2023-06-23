@@ -6,10 +6,9 @@ import Progress from "./Components/Progress";
 import toast, { Toaster } from "react-hot-toast";
 
 function App() {
-  
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [loader , setLoader] = useState(true);
+  const [loader, setLoader] = useState(true);
 
   const fileRef = useRef(null);
 
@@ -23,11 +22,10 @@ function App() {
   };
 
   const uploadChunks = () => {
-
     setLoader(false);
 
     if (file == null) {
-      return toast.error("No file selected");
+      return toast.error("No file selected"), setLoader(true);
     } else {
       toast("Please wait for the file to be uploaded");
       const chunkSize = 1024 * 1024; // 1MB
@@ -64,7 +62,7 @@ function App() {
       <Header></Header>
       <FileUplaod
         fileRef={fileRef}
-        loader = {loader}
+        loader={loader}
         uploadChunks={uploadChunks}
         handleFileChange={handleFileChange}
       ></FileUplaod>
